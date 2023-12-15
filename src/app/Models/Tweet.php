@@ -24,12 +24,12 @@ class Tweet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function favorite()
+    public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
 
-    public function comment()
+    public function comments()
     {
         return $this->hasMany(Comment::class);
     }
