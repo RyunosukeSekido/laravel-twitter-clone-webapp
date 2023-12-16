@@ -27,46 +27,41 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, Tweet $tweet, Follower $follower)
     {
-        //
-    }
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $timelines = $tweet->getUserTimeLine($user->id);
+        $tweet_count = $tweet->getTweetCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
 
+        return view('users.show', [
+            'user'           => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'tweet_count'    => $tweet_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -76,9 +71,19 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
+            'name'          => ['required', 'string', 'max:255'],
+            'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
+        ]);
+        $validator->validate();
+        $user->updateProfile($data);
+
+        return redirect('users/'.$user->id);
     }
 
     /**
