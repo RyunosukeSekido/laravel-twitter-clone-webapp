@@ -13,4 +13,14 @@ RUN apt-get update && \
 
 COPY ./php.ini /usr/local/etc/php/php.ini
 
+# Node.js, npm, nvmのインストール
+RUN apt-get update && \
+    apt-get -y install curl && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+    export NVM_DIR="$HOME/.nvm" && \
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    nvm install node && \
+    apt-get purge -y --auto-remove curl && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /data
