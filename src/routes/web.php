@@ -29,4 +29,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/users/{user}', 'App\Http\Controllers\UsersController@show')->name('users.show');
     Route::get('/users/{user}/edit', 'App\Http\Controllers\UsersController@edit')->name('users.edit');
     Route::put('/users/{user}', 'App\Http\Controllers\UsersController@update')->name('users.update');
+
+    // フォロー/フォロー解除を追加
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+    
 });
