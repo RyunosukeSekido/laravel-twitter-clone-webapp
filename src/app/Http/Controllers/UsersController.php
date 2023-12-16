@@ -101,8 +101,8 @@ class UsersController extends Controller
         if(!$is_following) {
             // フォローしていなければフォローする
             $follower->follow($user->id);
-            return back();
         }
+        return back();
     }
 
     // フォロー解除
@@ -114,7 +114,7 @@ class UsersController extends Controller
         if($is_following) {
             // フォローしていればフォローを解除する
             $follower->unfollow($user->id);
-            return back();
         }
+        return back();
     }
 }

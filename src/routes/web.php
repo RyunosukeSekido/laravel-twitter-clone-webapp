@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/users/{user}', 'App\Http\Controllers\UsersController@update')->name('users.update');
 
     // フォロー/フォロー解除を追加
-    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
-    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+    Route::post('users/{user}/follow', 'App\Http\Controllers\UsersController@follow')->name('follow');
+    Route::delete('users/{user}/unfollow', 'App\Http\Controllers\UsersController@unfollow')->name('unfollow');
     
 });
