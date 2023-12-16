@@ -16,6 +16,9 @@ up:
 	docker compose up -d
 down:
 	docker compose down
+restart:
+	docker compose down
+	docker compose up -d
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
 app:
