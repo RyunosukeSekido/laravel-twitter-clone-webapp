@@ -12,11 +12,11 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group row align-items-center">
+                        <div class="form-group row align-items-center mb-3">
                             <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                                <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="mr-2 rounded-circle" width="80" height="80" alt="profile_image">
+                                <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="me-2 rounded-circle" width="80" height="80" alt="profile_image">
                                 <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
 
                                 @error('profile_image')
@@ -27,7 +27,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label for="screen_name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
 
                             <div class="col-md-6">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-5">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
