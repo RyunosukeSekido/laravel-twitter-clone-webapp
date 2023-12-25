@@ -34,4 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('users/{user}/follow', 'App\Http\Controllers\UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'App\Http\Controllers\UsersController@unfollow')->name('unfollow');
     
+    // ツイート関連
+    Route::get('/tweets', 'App\Http\Controllers\TweetsController@index')->name('tweets.index');
+    Route::get('/tweets/create', 'App\Http\Controllers\TweetsController@create')->name('tweets.create');
+    Route::post('/tweets', 'App\Http\Controllers\TweetsController@store')->name('tweets.store');
+    Route::get('/tweets/{tweet}', 'App\Http\Controllers\TweetsController@show')->name('tweets.show');
+    Route::get('/tweets/{tweet}/edit', 'App\Http\Controllers\TweetsController@edit')->name('tweets.edit');
+    Route::put('/tweets/{tweet}', 'App\Http\Controllers\TweetsController@update')->name('tweets.update');
+    Route::delete('/tweets/{tweet}', 'App\Http\Controllers\TweetsController@destroy')->name('tweets.destroy');
 });
