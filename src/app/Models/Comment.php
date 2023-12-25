@@ -24,4 +24,15 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * 対象ツイートのコメントを取得
+     *
+     * @param Int $tweet_id
+     * @return Array コメント
+     */
+    public function getComments(Int $tweet_id)
+    {
+        return $this->with('user')->where('tweet_id', $tweet_id)->get();
+    }
 }
