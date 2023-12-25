@@ -52,6 +52,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item me-5 mt-2">
+                                <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
+                            </li>
                             <li class="nav-item">
                                 <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
                             </li>
