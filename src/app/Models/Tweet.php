@@ -39,7 +39,7 @@ class Tweet extends Model
      * ツイートを取得
      *
      * @param Int $user_id
-     * @return Array ツイート
+     * @return \App\Models\Tweet|null
      */
     public function getUserTimeLine(Int $user_id)
     {
@@ -62,7 +62,7 @@ class Tweet extends Model
      *
      * @param Int $user_id
      * @param Array $follow_ids
-     * @return Array ツイート一覧
+     * @return \App\Models\Tweet|null
      */
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {
@@ -74,7 +74,7 @@ class Tweet extends Model
      * 該当ツイートを取得
      *
      * @param Int $tweet_id
-     * @return Array ツイート
+     * @return \App\Models\Tweet|null
      */
     public function getTweet(Int $tweet_id)
     {
@@ -93,6 +93,34 @@ class Tweet extends Model
         $this->user_id = $user_id;
         $this->text = $data['text'];
         $this->save();
+
+        return;
+    }
+
+    /**
+     * 該当ツイートを取得
+     *
+     * @param Int $user_id
+     * @param Int $tweet_id
+     * @return \App\Models\Tweet|null
+     */
+    public function getEditTweet(Int $user_id, Int $tweet_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
+    }
+
+    /**
+     * ツイートを更新
+     *
+     * @param Int $tweet_id
+     * @param Array $data
+     * @return void
+     */
+    public function tweetUpdate(Int $tweet_id, Array $data)
+    {
+        $this->id = $tweet_id;
+        $this->text = $data['text'];
+        $this->update();
 
         return;
     }
