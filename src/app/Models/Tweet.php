@@ -124,4 +124,16 @@ class Tweet extends Model
 
         return;
     }
+
+    /**
+     * ツイートを削除
+     *
+     * @param Int $user_id
+     * @param Int $tweet_id
+     * @return void
+     */
+    public function tweetDestroy(Int $user_id, Int $tweet_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $tweet_id)->delete();
+    }
 }
