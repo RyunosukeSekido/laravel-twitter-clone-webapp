@@ -11,7 +11,11 @@
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            @if ($timeline->user->profile_image)
+                                <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            @else
+                                <i class="me-2 fas fa-user-circle fa-3x text-secondary"></i>
+                            @endif
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
@@ -62,13 +66,9 @@
                                 @endif
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
-                            <div class="mr-3 d-flex align-items-center">
+                            <div class="ms-3 d-flex align-items-center">
                                 <a href="{{ url('tweets/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <button type="" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                         </div>
                     </div>

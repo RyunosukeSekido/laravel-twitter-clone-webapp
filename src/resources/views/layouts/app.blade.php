@@ -56,7 +56,11 @@
                                 <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
                             </li>
                             <li class="nav-item">
-                                <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @if (auth()->user()->profile_image)
+                                    <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @else
+                                    <i class="me-2 fas fa-user-circle fa-3x text-secondary"></i>
+                                @endif
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -64,10 +68,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('users/' .auth()->user()->id .'/edit') }}">
+                                        プロフィールを編集
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
