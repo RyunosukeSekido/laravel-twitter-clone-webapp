@@ -38,6 +38,23 @@ npm run build
 
 [http://127.0.0.1:8080/register](http://127.0.0.1:8080/register)にアクセスすると、アカウント新規登録画面へ遷移します。
 
-# Note
+# Directory Structure
 
-注意点などがあれば書く
+```shell-session
+.
+├── docker
+│   ├── mysql
+│   │   ├── Dockerfile
+│   │   └── my.cnf
+│   ├── nginx
+│   │   └── default.conf
+│   └── php
+│       ├── Dockerfile
+│       └── php.ini
+├── src
+│   └── Laravelのルートディレクトリ
+├── Makfile 
+├── README.md 
+└── docker-compose.yml
+```
+
