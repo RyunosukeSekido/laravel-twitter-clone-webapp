@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create</div>
+                <div class="card-header">ツイート</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('tweets.store') }}">
@@ -14,7 +14,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 w-100 d-flex">
                                 @if ($user->profile_image)
-                                    <img src="{{ asset('storage/profile_image/' .$user->profile_imagee) }}" class="rounded-circle" width="50" height="50">
+                                    <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
                                 @else
                                     <i class="me-2 fas fa-user-circle fa-3x text-secondary"></i>
                                 @endif
