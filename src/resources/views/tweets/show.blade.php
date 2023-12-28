@@ -21,18 +21,21 @@
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($tweet->user->id === Auth::user()->id)
                         <div class="dropdown mr-3 d-flex align-items-center">
-                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form method="POST" action="{{ url('tweets/' .$tweet->id) }}" class="mb-0">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <a href="{{ url('tweets/' .$tweet->id .'/edit') }}" class="dropdown-item">編集</a>
-                                    <button type="submit" class="dropdown-item del-btn">削除</button>
-                                </form>
-                            </div>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url('tweets/' . $tweet->id . '/edit') }}">編集</a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ url('tweets/' . $tweet->id) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item del-btn">削除</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     @endif
                     <div class="mr-3 d-flex align-items-center">

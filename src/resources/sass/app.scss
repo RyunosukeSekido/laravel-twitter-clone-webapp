@@ -6,3 +6,15 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Custom
+// ドロップダウン
+.dropdown-toggle::after {
+    content: none;
+}
+
+.dropdown-toggle {
+    i {
+        color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity, 1));
+    }
+}
