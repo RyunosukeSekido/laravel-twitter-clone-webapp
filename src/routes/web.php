@@ -42,4 +42,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/tweets/{tweet}/edit', 'App\Http\Controllers\TweetsController@edit')->name('tweets.edit');
     Route::put('/tweets/{tweet}', 'App\Http\Controllers\TweetsController@update')->name('tweets.update');
     Route::delete('/tweets/{tweet}', 'App\Http\Controllers\TweetsController@destroy')->name('tweets.destroy');
+
+    // コメント関連
+    Route::post('/tweets/{tweet}/comments', 'App\Http\Controllers\CommentsController@store')->name('comments.store');
 });
