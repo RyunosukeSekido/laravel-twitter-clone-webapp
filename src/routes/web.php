@@ -45,4 +45,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     // コメント関連
     Route::post('/tweets/{tweet}/comments', 'App\Http\Controllers\CommentsController@store')->name('comments.store');
+
+    // いいね関連
+    Route::post('/favorites', 'App\Http\Controllers\FavoritesController@store')->name('favorites.store');
+    Route::delete('favorites/{favorite}', 'App\Http\Controllers\FavoritesController@destroy')->name('favorites.destroy');
 });
