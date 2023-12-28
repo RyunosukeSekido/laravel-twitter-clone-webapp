@@ -80,6 +80,18 @@ class Tweet extends Model
     {
         return $this->with('user')->where('id', $tweet_id)->first();
     }
+    
+    /**
+     * 編集対象のツイートを取得
+     *
+     * @param Int $user_id
+     * @param Int $tweet_id
+     * @return \App\Models\Tweet|null
+     */
+    public function getEditTweet(Int $user_id, Int $tweet_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
+    }
 
     /**
      * ツイートを保存
@@ -96,19 +108,7 @@ class Tweet extends Model
 
         return;
     }
-
-    /**
-     * 該当ツイートを取得
-     *
-     * @param Int $user_id
-     * @param Int $tweet_id
-     * @return \App\Models\Tweet|null
-     */
-    public function getEditTweet(Int $user_id, Int $tweet_id)
-    {
-        return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
-    }
-
+    
     /**
      * ツイートを更新
      *

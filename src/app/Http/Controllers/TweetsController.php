@@ -66,7 +66,8 @@ class TweetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Tweet $tweet
+     * @param Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function show(Tweet $tweet, Comment $comment)
@@ -85,7 +86,7 @@ class TweetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Tweet $tweet
      * @return \Illuminate\Http\Response
      */
     public function edit(Tweet $tweet)
@@ -107,7 +108,7 @@ class TweetsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Tweet $tweet
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tweet $tweet)
@@ -124,7 +125,7 @@ class TweetsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Tweet $tweet
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tweet $tweet)

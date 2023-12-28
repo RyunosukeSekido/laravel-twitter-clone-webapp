@@ -31,6 +31,7 @@ class FavoritesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param Favorite $favorite
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Favorite $favorite)
@@ -83,7 +84,7 @@ class FavoritesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Favorite $favorite
      * @return \Illuminate\Http\Response
      */
     public function destroy(Favorite $favorite)

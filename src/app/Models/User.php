@@ -60,31 +60,56 @@ class User extends Authenticatable
         return $this->Where('id', '<>', $user_id)->paginate(5);
     }
 
-    // フォローする
+    /**
+     * フォローする
+     *
+     * @param Int $user_id
+     * @return void
+     */
     public function follow(Int $user_id) 
     {
         return $this->follows()->attach($user_id);
     }
 
-    // フォロー解除する
+    /**
+     * フォロー解除
+     *
+     * @param Int $user_id
+     * @return void
+     */
     public function unfollow(Int $user_id)
     {
         return $this->follows()->detach($user_id);
     }
 
-    // フォローしているか
+    /**
+     * フォローしているか
+     *
+     * @param Int $user_id
+     * @return boolean true フォロー済み false 未フォロー
+     */
     public function isFollowing(Int $user_id) 
     {
         return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
     }
 
-    // フォローされているか
+    /**
+     * フォローされているか
+     *
+     * @param Int $user_id
+     * @return boolean true フォローされている false フォローされていない
+     */
     public function isFollowed(Int $user_id) 
     {
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
 
-    // プロフィール更新
+    /**
+     * プロフィールを更新
+     *
+     * @param Array $params
+     * @return void
+     */
     public function updateProfile(Array $params)
     {
         if (isset($params['profile_image'])) {

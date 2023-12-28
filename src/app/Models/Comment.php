@@ -29,7 +29,7 @@ class Comment extends Model
      * 対象ツイートのコメントを取得
      *
      * @param Int $tweet_id
-     * @return Array コメント
+     * @return \App\Models\Comment|null
      */
     public function getComments(Int $tweet_id)
     {

@@ -14,7 +14,8 @@ class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
@@ -29,7 +30,9 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
+     * @param Tweet $tweet
+     * @param Follower $follower
      * @return \Illuminate\Http\Response
      */
     public function show(User $user, Tweet $tweet, Follower $follower)
@@ -56,7 +59,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -68,7 +71,7 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -97,7 +100,12 @@ class UsersController extends Controller
         //
     }
 
-    // フォロー
+    /**
+     * フォローする
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
     public function follow(User $user)
     {
         $follower = auth()->user();
@@ -110,7 +118,12 @@ class UsersController extends Controller
         return back();
     }
 
-    // フォロー解除
+    /**
+     * フォロー解除
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
     public function unfollow(User $user)
     {
         $follower = auth()->user();
